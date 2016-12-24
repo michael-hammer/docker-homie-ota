@@ -30,6 +30,7 @@ RUN \
   pip install -r requirements.txt && \
   mkdir -p /opt/homie-ota && \
   cp *.py /opt/homie-ota && \
+  cp *.ini.example /opt/homie-ota && \
   find / | grep bottle && \
   cd / && \
   rm -rf /tmp/homie-ota-${HOMIE_OTA_VERSION}*
