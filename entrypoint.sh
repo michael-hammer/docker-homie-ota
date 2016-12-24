@@ -8,4 +8,4 @@ export HOMIE_CONFIG_PATH=${HOMIE_CONFIG_PATH:-/opt/homie-ota/homie-ota.ini.examp
 cp -v ${HOMIE_CONFIG_PATH} /opt/homie-ota/homie-ota.ini
 
 # Call the base entrypoint script
-python homie-ota.py "$@"
+/opt/homie-ota/homie-ota.py "$@"
