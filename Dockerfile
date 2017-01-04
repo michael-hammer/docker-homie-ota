@@ -10,12 +10,13 @@ MAINTAINER Marc Lennox <marc.lennox@gmail.com>
 
 # Set environment.
 ENV \
-  HOMIE_OTA_VERSION=0.4
+  HOMIE_OTA_VERSION=4540f1a54d9465bd07b7caaf943f6d950e61f129
 
 # Install base packages.
 RUN \
   apk --update add \
     build-base \
+    git \
     python2-dev \
     py2-pip && \
     pip install --upgrade pip && \
@@ -23,8 +24,13 @@ RUN \
 
 # Install Homie OTA from source.
 RUN \
-  wget https://github.com/jpmens/homie-ota/archive/${HOMIE_OTA_VERSION}.tar.gz -O /tmp/homie-ota-${HOMIE_OTA_VERSION}.tar.gz && \
-  tar xvzf /tmp/homie-ota-${HOMIE_OTA_VERSION}.tar.gz -C /tmp && \
+#  wget https://github.com/jpmens/homie-ota/archive/${HOMIE_OTA_VERSION}.tar.gz -O /tmp/homie-ota-${HOMIE_OTA_VERSION}.tar.gz && \
+#  tar xvzf /tmp/homie-ota-${HOMIE_OTA_VERSION}.tar.gz -C /tmp && \
+  mkdir -p /tmp/homie-ota-${HOMIE_OTA_VERSION} && \
+  git clone https://github.com/jpmens/homie-ota /tmp/homie-ota-${HOMIE_OTA_VERSION} && \
+  cd /tmp/homie-ota-${HOMIE_OTA_VERSION} && \
+  git reset --hard ${HOMIE_OTA_VERSION} && \
+  rm -rf /tmp/homie-ota-${HOMIE_OTA_VERSION}/.git && \
   cd /tmp/homie-ota-${HOMIE_OTA_VERSION} && \
   pip install -r requirements.txt && \
   cd / && \
