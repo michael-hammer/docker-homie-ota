@@ -23,16 +23,13 @@ RUN \
 
 # Install Homie OTA from source.
 RUN \
-  mkdir /opt && \
   wget https://github.com/jpmens/homie-ota/archive/${HOMIE_OTA_VERSION}.tar.gz -O /tmp/homie-ota-${HOMIE_OTA_VERSION}.tar.gz && \
   tar xvzf /tmp/homie-ota-${HOMIE_OTA_VERSION}.tar.gz -C /tmp && \
   cd /tmp/homie-ota-${HOMIE_OTA_VERSION} && \
   pip install -r requirements.txt && \
-  mkdir -p /opt/homie-ota && \
-  cp *.py /opt/homie-ota && \
-  cp *.ini.example /opt/homie-ota && \
   cd / && \
-  rm -rf /tmp/homie-ota-${HOMIE_OTA_VERSION}*
+  mkdir /opt && \
+  mv /tmp/homie-ota-${HOMIE_OTA_VERSION} /opt/homie-ota
 
 # Set the working directory
 WORKDIR /opt/homie-ota
