@@ -16,8 +16,8 @@ ENV \
 RUN \
   apk --update add \
     build-base \
-    python-dev \
-    py-pip && \
+    python2-dev \
+    py2-pip && \
     pip install --upgrade pip && \
   rm -rf /var/cache/apk/*
 
