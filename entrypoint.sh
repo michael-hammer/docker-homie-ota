@@ -1,11 +1,12 @@
 #!/bin/bash
 set -e
 
-# Set environment
-export HOMIE_CONFIG_PATH=${HOMIE_CONFIG_PATH:-/opt/homie-ota/homie-ota.ini.example}
-
 # Copy the configuration into place
-cp -v ${HOMIE_CONFIG_PATH} /opt/homie-ota/homie-ota.ini
+[ -z "${HOMIE_CONFIG_PATH}" ] || cp -v ${HOMIE_CONFIG_PATH} /opt/homie-ota/homie-ota.ini
 
-# Call the base entrypoint script
-/opt/homie-ota/homie-ota.py "$@"
+# Prefix commands if none specified
+if [ -z "$@" ]; then
+  set -- python /opt/homie-ota/homie-ota.py "$@"
+fi
+
+exec "$@"
