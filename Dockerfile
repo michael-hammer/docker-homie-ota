@@ -10,7 +10,8 @@ MAINTAINER Marc Lennox <marc.lennox@gmail.com>
 
 # Set environment.
 ENV \
-  HOMIE_OTA_VERSION=4540f1a54d9465bd07b7caaf943f6d950e61f129
+  HOMIE_OTA_VERSION=4540f1a54d9465bd07b7caaf943f6d950e61f129 \
+  LOGFILE=/dev/stdout
 
 # Install base packages.
 RUN \

@@ -2,7 +2,7 @@
 set -e
 
 # Copy the configuration into place
-[ -z "${HOMIE_CONFIG_PATH}" ] || cp -v ${HOMIE_CONFIG_PATH} /opt/homie-ota/homie-ota.ini
+[ -z "${HOMIE_CONFIG_PATH}" ] || export INIFILE="${HOMIE_CONFIG_PATH}"
 
 # Prefix commands if none specified
 if [ -z "$@" ]; then
